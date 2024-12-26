@@ -42,11 +42,13 @@ USER_PASSWORDS = {
 USER = input("Username: ")
 PASSWORD = input("Password: ")
 print(USER, PASSWORD)
-
+print("-" * 30)
 if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
     print("Welcome to the app", USER)
     print("We have 3 texts to be analyzed.")  
-    TEXT_NUMBER = input("Select a text by number 1-3:") 
+    print("-" * 30)
+    TEXT_NUMBER = input("Enter a number btw. 1 and 3 to select:") 
+    print("-" * 30)
     if TEXT_NUMBER.isdigit() and int(TEXT_NUMBER) in range(1,4):
         TEXT_NUMBER = int(TEXT_NUMBER)
         print(TEXTS[TEXT_NUMBER - 1])
