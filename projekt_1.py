@@ -30,8 +30,7 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
-#print(TEXTS[0])
-
+# slovnik uzivatelu
 USER_PASSWORDS = {
     "bob": "123",
     "ann": "pass123",
@@ -39,26 +38,42 @@ USER_PASSWORDS = {
     "liz": "pass123"
 }
 
+# vyzadani uzivatelskeho jmena a hesla
 USER = input("Username: ")
 PASSWORD = input("Password: ")
 print(USER, PASSWORD)
 print("-" * 30)
+
+# kontrola uzivatelskeho jmena a hesla
 if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
     print("Welcome to the app", USER)
     print("We have 3 texts to be analyzed.")  
     print("-" * 30)
+
+    # vyber textu uzivatelem
     TEXT_NUMBER = input("Enter a number btw. 1 and 3 to select:") 
     print("-" * 30)
+
+    # kontrola zda vstupni hodnota je cislo a zda je v rozsahu
     if TEXT_NUMBER.isdigit() and int(TEXT_NUMBER) in range(1,4):
         TEXT_NUMBER = int(TEXT_NUMBER)
         print(TEXTS[TEXT_NUMBER - 1])
+        SELECTED_TEXT = TEXTS[TEXT_NUMBER - 1]
+        #print(SELECTED_TEXT.split()) kontrola spravneho deleni
+        COUNT_WORDS = len(SELECTED_TEXT.split())
+        #print("There are", COUNT_WORDS, "words in the selected text.")
 
+    # pokud je vstupni hodnota cislo a neni v rozsahu -> konec programu
     elif TEXT_NUMBER.isdigit() and int(TEXT_NUMBER) not in range(1,4):
         print("Sorry, you have selected a wrong number. The program will end now.")
         quit()
+
+    # pokud vstupni hodnota neni cislo -> konec programu
     else:
         print("Sorry, you have entered a wrong input. The program will end now.")
         quit()
+
+# ukonceni programu v pripade spatneho uzivatelskeho jmena nebo hesla
 else:
     print("Sorry, wrong username or password. The program will end now.")
     quit()
