@@ -31,8 +31,7 @@ in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
 
-# TODO: dokoncit analyzu textu
-# slovnik uzivatelu
+# uzivatelska jmena a hesla
 USER_PASSWORDS = {
     "bob": "123",
     "ann": "pass123",
@@ -43,7 +42,6 @@ USER_PASSWORDS = {
 # vyzadani uzivatelskeho jmena a hesla
 USER = input("Username: ")
 PASSWORD = input("Password: ")
-print(USER, PASSWORD)
 print("-" * 30)
 
 # kontrola uzivatelskeho jmena a hesla
@@ -53,32 +51,31 @@ if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
     print("-" * 30)
 
     # vyber textu uzivatelem
-    TEXT_NUMBER = input("Enter a number btw. 1 and 3 to select:") 
+    TEXT_NUMBER = input("Enter a number btw. 1 and 3 to select: ") 
     print("-" * 30)
 
     # kontrola zda vstupni hodnota je cislo a zda je v rozsahu
     if TEXT_NUMBER.isdigit() and int(TEXT_NUMBER) in range(1,4):
         TEXT_NUMBER = int(TEXT_NUMBER)
-        #print(TEXTS[TEXT_NUMBER - 1])
-
-        #vezme text z listu TEXTS
+        # vezme text z listu TEXTS
         SELECTED_TEXT = TEXTS[TEXT_NUMBER - 1]
-        #print(SELECTED_TEXT.split()) kontrola spravneho deleni
-        # pocet slov ve vybranem textu
+        # rozdeleni textu na slova
         SPLIT_TEXT = SELECTED_TEXT.split()
+        # pocet slov ve vybranem textu
         COUNT_WORDS = len(SPLIT_TEXT)
-        print("There are", COUNT_WORDS, "words in the selected text.")
         TITLECASE_WORDS = 0
         UPPERCASE_WORDS = 0
         LOWERCASE_WORDS = 0
         NUMERIC_STRING = 0
         SUM_NUMBERS = 0
-        CLEAN_WORDS = list()
+        WORD_LENGHTS = list()
+
         # analyza slov v textu
         for WORD in SPLIT_TEXT:
-            #print(WORD)
-            # Očištění slov od nežádoucích znaků
-            CLEAN_WORDS.append(WORD.strip(",.!?"))    
+           
+            # Očištění slov od nežádoucích znaků a zjisteni delky slova
+            WORD_LENGHTS.append(len(WORD.strip(",.!?-")))    
+
             # slova s velkym pocatecnim pismenem
             if WORD.istitle():
                 TITLECASE_WORDS += 1
@@ -93,11 +90,11 @@ if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
 
             # slova ktera jsou cisla a secteni techto cisel (funguje pouze v pripade celych cisel)
             elif WORD.isdigit():
-                print(WORD)
                 NUMERIC_STRING += 1
                 SUM_NUMBERS += int(WORD)
 
         #Vypis vysledku
+        print("There are", COUNT_WORDS, "words in the selected text.")
         print("There are", TITLECASE_WORDS, "titlecase words.")
         print("There are", UPPERCASE_WORDS, "uppercase words.")
         print("There are", LOWERCASE_WORDS, "lowercase words.")
@@ -105,15 +102,22 @@ if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
         print("The sum of all the numbers", SUM_NUMBERS)
         print("-" * 30)
 
+        # Počítání četnosti délek
+        LENGTH_FREQUENCIES = {}
+        for LENGHT in sorted(WORD_LENGHTS):
+            if LENGHT in LENGTH_FREQUENCIES:
+                LENGTH_FREQUENCIES[LENGHT] += 1
+            else:
+                LENGTH_FREQUENCIES[LENGHT] = 1
+        
         #vypis sloupcoveho grafu
         # Tisk záhlaví tabulky
         print(f"{'LEN':>5} {'|'} {'OCCURRENCES':^15} {'|'} {'NR.':<5}")
         print("-" * 30)
+        
         # Tisk řádků tabulky
-        POSITION = 0
-        for WORD in CLEAN_WORDS:
-            POSITION += 1
-            print(f"{POSITION:>5} {'|'} {'*'*len(WORD):^15} {'|'} {len(WORD):<5}")
+        for LENGHT in LENGTH_FREQUENCIES:
+            print(f"{LENGHT:>5} {'|'} {'*' * LENGTH_FREQUENCIES[LENGHT]:<15} {'|'} {LENGTH_FREQUENCIES[LENGHT]:<5}")
 
     # pokud je vstupni hodnota cislo a neni v rozsahu -> konec programu
     elif TEXT_NUMBER.isdigit() and int(TEXT_NUMBER) not in range(1,4):
