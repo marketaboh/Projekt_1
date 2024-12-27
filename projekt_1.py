@@ -30,6 +30,8 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish,
 garpike and stingray are also present.'''
 ]
+
+# TODO: dokoncit analyzu textu
 # slovnik uzivatelu
 USER_PASSWORDS = {
     "bob": "123",
@@ -58,10 +60,47 @@ if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
     if TEXT_NUMBER.isdigit() and int(TEXT_NUMBER) in range(1,4):
         TEXT_NUMBER = int(TEXT_NUMBER)
         print(TEXTS[TEXT_NUMBER - 1])
+
+        #vezme text z listu TEXTS
         SELECTED_TEXT = TEXTS[TEXT_NUMBER - 1]
         #print(SELECTED_TEXT.split()) kontrola spravneho deleni
-        COUNT_WORDS = len(SELECTED_TEXT.split())
-        #print("There are", COUNT_WORDS, "words in the selected text.")
+        # pocet slov ve vybranem textu
+        SPLIT_TEXT = SELECTED_TEXT.split()
+        COUNT_WORDS = len(SPLIT_TEXT)
+        print("There are", COUNT_WORDS, "words in the selected text.")
+        TITLECASE_WORDS = 0
+        UPPERCASE_WORDS = 0
+        LOWERCASE_WORDS = 0
+        NUMERIC_STRING = 0
+        SUM_NUMBERS = 0
+        # analyza slov v textu
+        for WORD in SPLIT_TEXT:
+            #print(WORD)
+            # slova s velkym pocatecnim pismenem
+            if WORD.istitle():
+                TITLECASE_WORDS += 1
+
+            # slova velkymi pismeny
+            elif  WORD.isalpha() and WORD.isupper():
+                UPPERCASE_WORDS += 1
+
+            # slova malymi pismeny
+            elif WORD.islower():
+                LOWERCASE_WORDS += 1
+            # slova ktera jsou cisla a secteni techto cisel (funguje pouze v pripade celych cisel)
+            elif WORD.isdigit():
+                print(WORD)
+                NUMERIC_STRING += 1
+                SUM_NUMBERS += int(WORD)
+        print("There are", TITLECASE_WORDS, "titlecase words.")
+        print("There are", UPPERCASE_WORDS, "uppercase words.")
+        print("There are", LOWERCASE_WORDS, "lowercase words.")
+        print("There are", NUMERIC_STRING, "numeric strings.")
+        print("The sum of all the numbers", SUM_NUMBERS)
+        print("-" * 30)
+
+        #vypis sloupcoveho grafu
+
 
     # pokud je vstupni hodnota cislo a neni v rozsahu -> konec programu
     elif TEXT_NUMBER.isdigit() and int(TEXT_NUMBER) not in range(1,4):
