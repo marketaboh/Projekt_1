@@ -42,17 +42,17 @@ USER_PASSWORDS = {
 # vyzadani uzivatelskeho jmena a hesla
 USER = input("Username: ")
 PASSWORD = input("Password: ")
-print("-" * 30)
+print("-" * 40)
 
 # kontrola uzivatelskeho jmena a hesla
 if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
     print("Welcome to the app", USER)
     print("We have 3 texts to be analyzed.")  
-    print("-" * 30)
+    print("-" * 40)
 
     # vyber textu uzivatelem
     TEXT_NUMBER = input("Enter a number btw. 1 and 3 to select: ") 
-    print("-" * 30)
+    print("-" * 40)
 
     # kontrola zda vstupni hodnota je cislo a zda je v rozsahu
     if TEXT_NUMBER.isdigit() and int(TEXT_NUMBER) in range(1,4):
@@ -100,7 +100,7 @@ if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
         print("There are", LOWERCASE_WORDS, "lowercase words.")
         print("There are", NUMERIC_STRING, "numeric strings.")
         print("The sum of all the numbers", SUM_NUMBERS)
-        print("-" * 30)
+        print("-" * 40)
 
         # Počítání četnosti délek
         LENGTH_FREQUENCIES = {}
@@ -113,7 +113,7 @@ if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
         #vypis sloupcoveho grafu
         # Tisk záhlaví tabulky
         print(f"{'LEN':>5} {'|'} {'OCCURRENCES':^20} {'|'} {'NR.':<5}")
-        print("-" * 30)
+        print("-" * 40)
         
         # Tisk řádků tabulky
         for LENGHT in LENGTH_FREQUENCIES:
