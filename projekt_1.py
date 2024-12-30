@@ -74,7 +74,7 @@ if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
         for WORD in SPLIT_TEXT:
            
             # Očištění slov od nežádoucích znaků a zjisteni delky slova
-            WORD_LENGHTS.append(len(WORD.strip(",.!?-")))    
+            WORD_LENGHTS.append(len(WORD.strip(",.!?")))    
 
             # slova s velkym pocatecnim pismenem
             if WORD.istitle():
@@ -112,12 +112,12 @@ if USER in USER_PASSWORDS and PASSWORD == USER_PASSWORDS[USER]:
         
         #vypis sloupcoveho grafu
         # Tisk záhlaví tabulky
-        print(f"{'LEN':>5} {'|'} {'OCCURRENCES':^15} {'|'} {'NR.':<5}")
+        print(f"{'LEN':>5} {'|'} {'OCCURRENCES':^20} {'|'} {'NR.':<5}")
         print("-" * 30)
         
         # Tisk řádků tabulky
         for LENGHT in LENGTH_FREQUENCIES:
-            print(f"{LENGHT:>5} {'|'} {'*' * LENGTH_FREQUENCIES[LENGHT]:<15} {'|'} {LENGTH_FREQUENCIES[LENGHT]:<5}")
+            print(f"{LENGHT:>5} {'|'} {'*' * LENGTH_FREQUENCIES[LENGHT]:<20} {'|'} {LENGTH_FREQUENCIES[LENGHT]:<5}")
 
     # pokud je vstupni hodnota cislo a neni v rozsahu -> konec programu
     elif TEXT_NUMBER.isdigit() and int(TEXT_NUMBER) not in range(1,4):
